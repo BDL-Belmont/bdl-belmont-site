@@ -2,8 +2,8 @@ backend:
   name: github
   repo: BDL-Belmont/bdl-belmont-site          # <- à remplacer
   branch: main
-  base_url: https://site.bdlbelmont.workers.dev   # <- l'adresse de ton site, sans "/" à la fin
-  site_domain: site.bdlbelmont.workers.dev   # <- la même, sans "https://"
+  base_url: https://bdl-belmont.tfcow.workers.dev   # <- l'adresse de ton site, sans "/" à la fin
+  site_domain: bdl-belmont.tfcow.workers.dev   # <- la même, sans "https://"
   auth_endpoint: /api/auth
 
 locale: "fr"
