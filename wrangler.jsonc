@@ -25,6 +25,6 @@
   "vars": {
     // À remplacer par le « Client ID » de l'application OAuth GitHub (étape 6).
     // Ce n'est pas un secret. Le « Client secret », lui, se met dans le tableau de bord.
-    "GITHUB_CLIENT_ID": "f4cf0c8dc83789ddfd90566fe1aaf31c9bc3f5f7"
+    "GITHUB_CLIENT_ID": "Ov23liz8tsLvRcjP8Mb5"
   }
 }
