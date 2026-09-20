@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: TON-COMPTE/bde-site          # <- à remplacer
+  repo: BDL-Belmont/bdl-belmont-site          # <- à remplacer
   branch: main
-  base_url: https://bde-site.SOUS-DOMAINE.workers.dev   # <- l'adresse de ton site, sans "/" à la fin
-  site_domain: bde-site.SOUS-DOMAINE.workers.dev   # <- la même, sans "https://"
+  base_url: https://bdl-belmont-site.francesco09minecraft.workers.dev   # <- l'adresse de ton site, sans "/" à la fin
+  site_domain: bdl-belmont-site.francesco09minecraft.workers.dev   # <- la même, sans "https://"
   auth_endpoint: /api/auth
 
 locale: "fr"
