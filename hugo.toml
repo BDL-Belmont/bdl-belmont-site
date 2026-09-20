@@ -1,4 +1,4 @@
-baseURL = "https://bdl-belmont-site.francesco09minecraft.workers.dev/"
+baseURL = "https://site.bdlbelmont.workers.dev/"
 title = "BDL Belmont"
 locale = "fr-FR"
 defaultContentLanguage = "fr"
