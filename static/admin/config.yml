@@ -1,0 +1,53 @@
+backend:
+  name: github
+  repo: TON-COMPTE/bde-site          # <- à remplacer
+  branch: main
+  base_url: https://bde-site.SOUS-DOMAINE.workers.dev   # <- l'adresse de ton site, sans "/" à la fin
+  site_domain: bde-site.SOUS-DOMAINE.workers.dev   # <- la même, sans "https://"
+  auth_endpoint: /api/auth
+
+locale: "fr"
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "actus"
+    label: "Actualités"
+    label_singular: "Actualité"
+    folder: "content/actus"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Texte", name: "body", widget: "markdown" }
+
+  - name: "evenements"
+    label: "Événements"
+    label_singular: "Événement"
+    folder: "content/evenements"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Nom", name: "title", widget: "string" }
+      - { label: "Date et heure", name: "date", widget: "datetime" }
+      - { label: "Lieu", name: "lieu", widget: "string" }
+      - { label: "Affiche", name: "image", widget: "image", required: false }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Accueil"
+        name: "accueil"
+        file: "content/_index.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Texte", name: "body", widget: "markdown" }
+      - label: "Le bureau"
+        name: "bureau"
+        file: "content/bureau.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Texte", name: "body", widget: "markdown" }

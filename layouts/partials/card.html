@@ -1,0 +1,6 @@
+<article class="card">
+  {{ with .Params.image }}<img src="{{ . }}" alt="">{{ end }}
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p class="meta">{{ .Date.Format "02/01/2006" }}{{ with .Params.lieu }} · {{ . }}{{ end }}</p>
+  <p>{{ .Summary | plainify | truncate 150 }}</p>
+</article>

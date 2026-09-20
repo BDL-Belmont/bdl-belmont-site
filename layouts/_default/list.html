@@ -1,0 +1,6 @@
+{{ define "main" }}
+  <h1>{{ partial "titre.html" . }}</h1>
+  {{ range .Pages }}
+    {{ partial "card.html" . }}
+  {{ end }}
+{{ end }}

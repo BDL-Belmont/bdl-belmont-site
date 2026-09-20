@@ -1,0 +1,30 @@
+{
+  // Le nom DOIT être identique au nom du projet créé dans le tableau de bord Cloudflare.
+  // Il sert aussi à fabriquer l'adresse : https://NOM.SOUS-DOMAINE.workers.dev
+  "name": "bdl-belmont-site",
+
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-20",
+
+  // Garde les variables ajoutées à la main dans le tableau de bord lors des déploiements.
+  // (Les « secrets » ne sont jamais supprimés.)
+  "keep_vars": true,
+
+  // Construit le site avec Hugo avant chaque déploiement.
+  "build": {
+    "command": "chmod a+x build.sh && ./build.sh"
+  },
+
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page",
+    // Seules les adresses /api/... passent par le Worker. Le reste = fichiers statiques.
+    "run_worker_first": ["/api/*"]
+  },
+
+  "vars": {
+    // À remplacer par le « Client ID » de l'application OAuth GitHub (étape 6).
+    // Ce n'est pas un secret. Le « Client secret », lui, se met dans le tableau de bord.
+    "GITHUB_CLIENT_ID": "REMPLACE-PAR-TON-CLIENT-ID"
+  }
+}

@@ -1,0 +1,28 @@
+baseURL = "https://bde-site.SOUS-DOMAINE.workers.dev/"
+title = "BDL Belmont"
+locale = "fr-FR"
+defaultContentLanguage = "fr"
+
+# Indispensable : sans ça, Hugo n'affiche pas les événements datés dans le futur
+buildFuture = true
+
+# Pas de pages « tags » et « catégories » inutiles
+disableKinds = ["taxonomy", "term"]
+
+[menus]
+  [[menus.main]]
+    name = "Accueil"
+    url = "/"
+    weight = 1
+  [[menus.main]]
+    name = "Actus"
+    url = "/actus/"
+    weight = 2
+  [[menus.main]]
+    name = "Événements"
+    url = "/evenements/"
+    weight = 3
+  [[menus.main]]
+    name = "Le bureau"
+    url = "/bureau/"
+    weight = 4
