@@ -1,4 +1,4 @@
 ---
 title: "Bienvenue au BDL"
 ---
-Le Bureau des Élèves organise les soirées, les activités et la vie étudiante de l'école.
+Le Bureau des Lycées organise de nombreux evenements et activités pour la vie lycéene au lycée Belmont.
