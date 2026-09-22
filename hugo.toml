@@ -3,10 +3,7 @@ title = "BDL Belmont"
 locale = "fr-FR"
 defaultContentLanguage = "fr"
 
-# Indispensable : sans ça, Hugo n'affiche pas les événements datés dans le futur
 buildFuture = true
-
-# Pas de pages « tags » et « catégories » inutiles
 disableKinds = ["taxonomy", "term"]
 
 [menus]
@@ -26,3 +23,15 @@ disableKinds = ["taxonomy", "term"]
     name = "Le bureau"
     url = "/bureau/"
     weight = 4
+
+[params]
+  mainSections = ["actus", "evenements"]
+
+# Remplacement de la virgule par un point ici :
+[params.theme]
+  defaultTheme = "light"
+  disableThemeToggle = false
+
+  # Accueil
+  title = "BDL Belmont"
+  description = "La vie étudiante à Belmont"

@@ -1,0 +1,288 @@
+/* ══════ BDL Belmont — Styles globaux ══════ */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&display=swap');
+
+/* Variables CSS (Light Mode par défaut) */
+:root {
+  --bdl-bg-main: #faf7ff;
+  --bdl-bg-alt: #f1ecfb;
+  --bdl-bg-card: #ffffff;
+  --bdl-text-main: #241b3a;
+  --bdl-text-muted: #6d6480;
+  --bdl-border: #eee6f8;
+  --bdl-article-bg: #ffffff;
+  --bdl-article-text: #3d3554;
+  --bdl-quote-bg: #f8f4ff;
+  --bdl-code-bg: #f1ecfb;
+}
+
+/* Surcharges Dark Mode */
+body.dark, [data-theme="dark"], .dark {
+  --bdl-bg-main: #120e1c;
+  --bdl-bg-alt: #1a1528;
+  --bdl-bg-card: #231c36;
+  --bdl-text-main: #f0ebf8;
+  --bdl-text-muted: #b8aed0;
+  --bdl-border: #33284d;
+  --bdl-article-bg: #1c162e;
+  --bdl-article-text: #d8d0e8;
+  --bdl-quote-bg: #271f3d;
+  --bdl-code-bg: #2d2447;
+}
+
+body, #content {
+  margin: 0;
+  background-color: var(--bdl-bg-main) !important;
+  color: var(--bdl-text-main) !important;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Typographies */
+.bdl-hero-title, .bdl-band h2, .bdl-tile h3, .bdl-brand-name, .bdl-nav-brand {
+  font-family: 'Outfit', system-ui, sans-serif !important;
+}
+
+/* ─── Barre de Navigation ─── */
+.bdl-navbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem 2rem;
+}
+.bdl-nav-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.bdl-nav-brand {
+  color: #fff !important;
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+.bdl-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.bdl-nav-links a {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+.bdl-nav-links a:hover {
+  color: #fff !important;
+}
+.bdl-theme-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  outline: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.bdl-theme-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.08);
+}
+
+/* ─── Hero dégradé ─── */
+.bdl-hero {
+  position: relative;
+  background: linear-gradient(125deg, #4f2ab8 0%, #8b3ff2 35%, #f0518b 70%, #ff8a4c 100%) !important;
+  color: #fff;
+  padding-top: 6rem;
+  overflow: hidden;
+}
+.bdl-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.16) 2.5px, transparent 2.5px),
+    radial-gradient(rgba(255,255,255,.10) 2px, transparent 2px);
+  background-size: 46px 46px, 72px 72px;
+  background-position: 0 0, 23px 35px;
+  pointer-events: none;
+}
+.bdl-hero-inner { 
+  position: relative; 
+  z-index: 1; 
+  padding-bottom: 4rem; 
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.bdl-hero-badge {
+  display: inline-block;
+  padding: .4em 1.05em;
+  border-radius: 999px;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+}
+.bdl-hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 900; line-height: 1.1;
+  margin: 0.8rem 0 0;
+  text-shadow: 0 4px 24px rgba(0,0,0,.18);
+}
+.bdl-hero-lead {
+  font-size: 1.1rem; line-height: 1.6;
+  margin: 0.8rem 0 0; max-width: 34em;
+  color: rgba(255,255,255,.92);
+}
+
+/* La vague adopte dynamiquement la couleur de fond */
+.bdl-hero-wave { 
+  display: block; 
+  margin-top: -1px; 
+  color: var(--bdl-bg-main) !important; 
+}
+
+.bdl-hero-wave svg { 
+  display: block; 
+  width: 100%; 
+  height: 60px; 
+  fill: currentColor !important;
+}
+
+/* ─── Contenu / Grilles / Cartes ─── */
+.bdl-band { 
+  padding: 3rem 1.5rem; 
+  max-width: 1140px;
+  margin: 0 auto;
+  background: var(--bdl-bg-main) !important; 
+  color: var(--bdl-text-main); 
+}
+
+.bdl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.bdl-tile {
+  display: flex; flex-direction: column;
+  background: var(--bdl-bg-card) !important;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none; color: var(--bdl-text-main);
+  border: 1px solid var(--bdl-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.bdl-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(122, 46, 224, .18);
+  border-color: #a855f7;
+}
+.bdl-tile h3 { font-weight: 800; margin: .6rem 0 .4rem; font-size: 1.15rem; color: var(--bdl-text-main); }
+.bdl-tile p { color: var(--bdl-text-muted); margin: 0; font-size: .92rem; line-height: 1.5; }
+.bdl-tile-foot {
+  margin-top: auto; padding-top: 1rem;
+  display: flex; justify-content: space-between; align-items: center;
+  color: #a855f7; font-size: .88rem; font-weight: 700;
+}
+
+.bdl-tile-news { border-top: 4px solid #7a2ee0; }
+.bdl-tile-date { font-size: .8rem; font-weight: 700; color: #f0518b; }
+
+/* Article unique (Bureau, détails) */
+.bdl-article {
+  background: var(--bdl-article-bg);
+  border: 1px solid var(--bdl-border);
+  border-radius: 18px;
+  padding: 2.2rem;
+  color: var(--bdl-article-text);
+  line-height: 1.7;
+}
+
+
+
+/* Boutons et liens dans la bannière Hero */
+.bdl-hero-btns {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.bdl-btn-primary {
+  background: #ffffff !important;
+  color: #4f2ab8 !important;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.bdl-btn-primary:hover {
+  transform: translateY(-2px);
+  background: #f0f0f0 !important;
+}
+
+.bdl-btn-secondary {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.bdl-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Alignement des titres et des boutons */
+.bdl-band-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Style des boutons "Tout voir →" et "Tout lire →" */
+.bdl-btn-more {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.2rem;
+  background: rgba(168, 85, 247, 0.15) !important;
+  color: #a855f7 !important;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.bdl-btn-more:hover {
+  background: #a855f7 !important;
+  color: #ffffff !important;
+  transform: translateX(3px);
+}

@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  <h2>Dernières actus</h2>
+  {{ range first 3 (where site.RegularPages "Section" "actus") }}
+    {{ partial "card.html" . }}
+  {{ end }}
+
+  <h2>Événements</h2>
+  {{ range first 3 (where site.RegularPages "Section" "evenements") }}
+    {{ partial "card.html" . }}
+  {{ end }}
+{{ end }}

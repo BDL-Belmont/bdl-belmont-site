@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}{{ site.Title }}{{ else if .IsSection }}{{ partial "titre.html" . }} · {{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+    
+    <!-- Charge le CSS bdl.css -->
+    <link rel="stylesheet" href="{{ "css/bdl.css" | absURL }}">
+    
+    {{ block "head" . }}{{ end }}
 </head>
 <body>
-  <header>
-    <a class="logo" href="/">{{ site.Title }}</a>
-    <nav>
-      {{ range site.Menus.main }}
-        <a href="{{ .URL }}">{{ .Name }}</a>
-      {{ end }}
-    </nav>
-  </header>
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer>
-    <p>© {{ now.Year }} {{ site.Title }}</p>
-  </footer>
+
+    <!-- Barre de navigation sur mesure -->
+    <header class="bdl-navbar">
+      <div class="bdl-nav-inner">
+        <a href="/" class="bdl-nav-brand">BDL Belmont</a>
+        <nav class="bdl-nav-links">
+          <a href="/">Accueil</a>
+          <a href="/actus/">Actus</a>
+          <a href="/evenements/">Événements</a>
+          <a href="/bureau/">Le bureau</a>
+          <button id="theme-toggle" class="bdl-theme-btn" aria-label="Changer le thème">🌙</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- Persistence et bascule Dark / Light Mode -->
+    <script>
+      const btn = document.getElementById('theme-toggle');
+      const currentTheme = localStorage.getItem('theme');
+
+      if (currentTheme === 'dark') {
+        document.body.classList.add('dark');
+        if (btn) btn.textContent = '☀️';
+      }
+
+      if (btn) {
+        btn.addEventListener('click', () => {
+          document.body.classList.toggle('dark');
+          let theme = 'light';
+          if (document.body.classList.contains('dark')) {
+            theme = 'dark';
+            btn.textContent = '☀️';
+          } else {
+            btn.textContent = '🌙';
+          }
+          localStorage.setItem('theme', theme);
+        });
+      }
+    </script>
+
 </body>
 </html>

@@ -1,10 +1,33 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} — BDL Belmont">
+<link rel="stylesheet" href="{{ "/css/bdl.css" | relURL }}">
+{{ end }}
+
+{{ define "title" }}{{ .Title }} — BDL Belmont{{ end }}
+
 {{ define "main" }}
-  <article>
-    <h1>{{ .Title }}</h1>
-    {{ if not .Date.IsZero }}
-      <p class="meta">{{ .Date.Format "02/01/2006" }}{{ with .Params.lieu }} · {{ . }}{{ end }}</p>
-    {{ end }}
-    {{ with .Params.image }}<img src="{{ . }}" alt="">{{ end }}
-    {{ .Content }}
-  </article>
+
+<section class="bdl-hero bdl-hero-page">
+  <div class="bdl-hero-inner container px-3 px-sm-5">
+    <div class="bdl-hero-text">
+      <span class="bdl-hero-badge">{{ .Section | default "BDL Belmont" }}</span>
+      <h1 class="bdl-hero-title">{{ .Title }}</h1>
+      {{ if .Params.date }}
+        <p class="bdl-hero-lead">Publié le {{ .Date.Format "02/01/2006" }}</p>
+      {{ end }}
+    </div>
+  </div>
+  <div class="bdl-hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,64 C240,96 480,0 720,32 C960,64 1200,16 1440,48 L1440,90 L0,90 Z" fill="currentColor"/></svg>
+  </div>
+</section>
+
+<section class="bdl-band">
+  <div class="container px-3 px-sm-5">
+    <article class="bdl-article">
+      {{ .Content }}
+    </article>
+  </div>
+</section>
+
 {{ end }}

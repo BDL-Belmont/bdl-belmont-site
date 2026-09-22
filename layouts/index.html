@@ -1,14 +1,116 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Site.Params.description | default "BDL Belmont — événements, actualités et vie étudiante" }}">
+{{ end }}
+
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
 
-  <h2>Dernières actus</h2>
-  {{ range first 3 (where site.RegularPages "Section" "actus") }}
-    {{ partial "card.html" . }}
-  {{ end }}
+{{/* ───────────── HERO ───────────── */}}
+<section class="bdl-hero">
+  <div class="bdl-hero-inner container px-3 px-sm-5">
 
-  <h2>Événements</h2>
-  {{ range first 3 (where site.RegularPages "Section" "evenements") }}
-    {{ partial "card.html" . }}
-  {{ end }}
+    <div class="bdl-hero-text">
+      <span class="bdl-hero-badge">Bureau des étudiants</span>
+      <h1 class="bdl-hero-title">
+        La fête, les actus,<br>
+        <span class="bdl-hero-grad">tout le campus ici.</span>
+      </h1>
+      <p class="bdl-hero-lead">
+        Le site officiel du BDL Belmont&nbsp;: retrouve les événements à venir,
+        les dernières actualités et toute l'équipe qui fait vivre la vie étudiante.
+      </p>
+      <div class="bdl-hero-btns">
+        <a href="{{ "/evenements/" | relURL }}" class="bdl-btn-primary">Voir les événements</a>
+        <a href="{{ "/actus/" | relURL }}" class="bdl-btn-secondary">Dernières actus</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="bdl-hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,64 C240,96 480,0 720,32 C960,64 1200,16 1440,48 L1440,90 L0,90 Z" fill="currentColor"/></svg>
+  </div>
+</section>
+
+{{/* ───────────── ÉVÉNEMENTS ───────────── */}}
+{{ $events := where site.RegularPages "Section" "evenements" }}
+{{ $events = where $events "Date" "ge" now }}
+{{ $events = first 3 (sort $events "Date" "asc") }}
+
+<section class="bdl-band">
+  <div class="container px-3 px-sm-5">
+    <header class="bdl-band-head">
+      <div>
+        <span class="bdl-kicker">Calendrier</span>
+        <h2>Prochains événements</h2>
+      </div>
+    </header>
+
+    <div class="bdl-grid">
+      {{ range $events }}
+      <a href="{{ .RelPermalink }}" class="bdl-tile bdl-tile-event">
+        <span class="bdl-tile-top">
+          <span class="bdl-tile-day">{{ .Date.Format "02" }}</span>
+          <span class="bdl-tile-month">{{ .Date.Format "Jan" }}</span>
+        </span>
+        <h3>{{ .Title }}</h3>
+        <p>{{ with .Description }}{{ . | plainify | truncate 110 }}{{ else }}{{ .Summary | plainify | truncate 110 }}{{ end }}</p>
+        <span class="bdl-tile-foot">
+          <span>{{ .Date.Format "15:04" }}</span>
+          <span class="bdl-tile-go">Découvrir →</span>
+        </span>
+      </a>
+      {{ else }}
+      <p class="bdl-none">Aucun événement à venir pour le moment — reviens bientôt&nbsp;!</p>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ───────────── ACTUALITÉS ───────────── */}}
+{{ $actus := where site.RegularPages "Section" "actus" }}
+{{ $actus = first 3 (sort $actus "Date" "desc") }}
+
+<section class="bdl-band bdl-band-alt">
+  <div class="container px-3 px-sm-5">
+    <header class="bdl-band-head">
+      <div>
+        <span class="bdl-kicker">Le fil</span>
+        <h2>Dernières actualités</h2>
+      </div>
+    </header>
+
+    <div class="bdl-grid">
+      {{ range $actus }}
+      <a href="{{ .RelPermalink }}" class="bdl-tile bdl-tile-news">
+        <span class="bdl-tile-date">{{ .Date.Format "02/01/2006" }}</span>
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Summary | plainify | truncate 100 }}</p>
+        <span class="bdl-tile-foot">
+          <span class="bdl-tile-go">Lire l'article →</span>
+        </span>
+      </a>
+      {{ else }}
+      <p class="bdl-none">Pas encore d'actualité — le premier article arrive bientôt&nbsp;!</p>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ───────────── LE BDL ───────────── */}}
+<section class="bdl-band">
+  <div class="container px-3 px-sm-5">
+    <div class="bdl-about">
+      <div class="bdl-about-text">
+        <span class="bdl-kicker">Qui sommes-nous&nbsp;?</span>
+        <h2>Le BDL Belmont</h2>
+        <p>
+          Une équipe d'étudiants motivés pour faire vivre le campus&nbsp;:
+          soirées, tournois, projets et bonnes ondes. Propose tes idées,
+          viens aux événements, rejoins l'aventure.
+        </p>
+        <a href="{{ "/bureau/" | relURL }}" class="bdl-btn-primary">Découvrir le bureau</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 {{ end }}

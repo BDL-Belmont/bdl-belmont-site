@@ -1,6 +1,50 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ "/css/bdl.css" | relURL }}">
+{{ end }}
+
 {{ define "main" }}
-  <h1>{{ partial "titre.html" . }}</h1>
-  {{ range .Pages }}
-    {{ partial "card.html" . }}
-  {{ end }}
+
+<section class="bdl-hero">
+  <div class="bdl-hero-inner">
+    <div class="bdl-hero-text">
+      <span class="bdl-hero-badge">BDL Belmont</span>
+      <h1 class="bdl-hero-title">{{ .Title }}</h1>
+      <p class="bdl-hero-lead">
+        {{ if eq .Section "actus" }}Toutes les dernières informations et annonces du campus.{{ else }}Le calendrier des festivités et rencontres à venir.{{ end }}
+      </p>
+    </div>
+  </div>
+  <div class="bdl-hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,64 C240,96 480,0 720,32 C960,64 1200,16 1440,48 L1440,90 L0,90 Z" fill="currentColor"/></svg>
+  </div>
+</section>
+
+<section class="bdl-band">
+  <div class="bdl-grid">
+    {{ range .Pages }}
+      {{ if eq .Section "evenements" }}
+        <a href="{{ .RelPermalink }}" class="bdl-tile">
+          <span class="bdl-tile-date">{{ .Date.Format "02/01/2006" }}</span>
+          <h3>{{ .Title }}</h3>
+          <p>{{ with .Description }}{{ . | plainify | truncate 110 }}{{ else }}{{ .Summary | plainify | truncate 110 }}{{ end }}</p>
+          <span class="bdl-tile-foot">
+            <span>Voir détails →</span>
+          </span>
+        </a>
+      {{ else }}
+        <a href="{{ .RelPermalink }}" class="bdl-tile bdl-tile-news">
+          <span class="bdl-tile-date">{{ .Date.Format "02/01/2006" }}</span>
+          <h3>{{ .Title }}</h3>
+          <p>{{ .Summary | plainify | truncate 110 }}</p>
+          <span class="bdl-tile-foot">
+            <span>Lire la suite →</span>
+          </span>
+        </a>
+      {{ end }}
+    {{ else }}
+      <p>Aucun contenu disponible pour le moment.</p>
+    {{ end }}
+  </div>
+</section>
+
 {{ end }}
